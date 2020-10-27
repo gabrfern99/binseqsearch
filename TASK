@@ -1,0 +1,44 @@
+Tarefa 3 - Métodos de Pesquisa
+
+O objetivo dessa tarefa é compreender as diversas características dos
+métodos de pesquisa, seu desempenho computacional, assim como
+implementá-los. A atividade por ser feita em grupos de até 3
+pessoas. Recomenda-se utilizar a mesma equipe da tarefa 2.
+
+Continuando o desenvolvimento do software para acompanhamento do
+endereço eletrônico dos funcionários em homeoffice, a empresa notou
+que precisa de um mecanismo de pesquisa. Considere para realização
+dessa continuação os mesmo arquivos de log utilizados na “tarefa 2 -
+algoritmos de ordenação”. O gerente de TI está em dúvida de qual
+método de pesquisa deve ser utilizado (pesquisa sequencial ou pesquisa
+binária). Assim, foi solicitado que a sua equipe desenvolva os dois
+métodos e os utilize para realizar as pesquisas pelo campo first_name
+nos dados dos arquivos lidos em memória.
+
+Além de retornar os dados do usuário desejado por meio de cada um dos
+métodos, o sistema deverá apresentar o número de comparações do campo
+chave necessárias para realizar a busca. Os arquivos podem conter no
+máximo 5000 elementos, mas a quantidade exata de elementos não está
+disponível préviamente.
+
+Exemplo do arquivo
+first_name,last_name,email,gender,ip_address
+Izabel,Brinkworth,ibrinkworth0@xinhuanet.com,Female,124.157.20.133
+Jobie,Rope,jrope1@shop-pro.jp,Female,209.132.107.148
+Margy,Retallack,mretallack2@qq.com,Female,32.55.159.175
+Yolanda,Bartelot,ybartelot3@admin.ch,Female,253.191.240.71
+
+Para fins de validação do desempenho da solução proposta e de
+referência do desempenho de cada método são disponibilizados exemplos
+de arquivos com algumas quantidades de registros ordenados, bem como
+uma lista de nomes que devem ser utilizados para testar a busca. Você
+deve apresentar um relatório contendo para cada um dos conjuntos de
+dados e nome de usuário para busca as demais informações da chave
+desejada e o número de comparações realizadas. O relatório deve
+especificar e justificar com base nos resultados obtidos qual método
+de pesquisa usar definitivamente no sistema. Além disso, escreva no
+relatório qual seria a recomendação de método de pesquisa, caso não se
+tenha conhecimento sobre a ordenação dos dados de entrada.
+
+Deve ser entregue como resultado da tarefa o relatório e os códigos
+desenvolvidos.

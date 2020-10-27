@@ -1,0 +1,140 @@
+#include "binarySearch.h"
+#include "linearSearch.h"
+
+int array[] = {-16, -15, -14, -13, -12, -11, -10, -9,
+                -8,  -7,  -6,  -5,  -4,  -3,  -2, -1,
+                 0,   1,   2,   3,   4,   5,   6,  7,
+                 8,   9,  10,  11,  12,  13,  14, 15};
+
+int compFunc(const void* element1, const void *element2)
+{
+	return *(int *)element1 - *(int *)element2;
+}
+
+#tcase compFunc
+#test lesser
+	int key = 1, i2 = 2;
+	int result = compFunc(&key, &i2);
+	ck_assert_int_lt(result, 0);
+
+#test equal
+	int key = 1;
+	int result = compFunc(&key, &key);
+	ck_assert_int_eq(result, 0);
+
+#test greater
+	int key = 1, i0 = 0;
+	int result = compFunc(&key, &i0);
+	ck_assert_int_gt(result, 0);
+
+#suite bsearch
+
+#tcase bsearch
+
+#test bfindElement
+	int *key = array + 10;
+	int *result = binarySearch(key, array, sizeof array/sizeof *array,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_nonnull(result);
+	ck_assert_int_eq(*key, *result);
+
+#test bfindAll
+	for(int i=-16; i<16; i++)
+	{
+		int *key = &i;
+		int *result = binarySearch(key, array, sizeof array/sizeof *array,
+		                           sizeof *array, compFunc);
+		ck_assert_ptr_nonnull(result);
+		ck_assert_int_eq(*key, *result);
+	}
+
+#test bfindOffsetArray
+	int *key = array + 23;
+	int *result = binarySearch(key, array + 20, 10,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_nonnull(result);
+	ck_assert_int_eq(*key, *result);
+
+#test bfindUnitaryArray
+	int *key = array;
+	int *result = binarySearch(key, array, 1,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_nonnull(result);
+	ck_assert_int_eq(*key, *result);
+
+#test bfindHole
+	int hole[] = {1, 2, 2, 2, 3, 4, 4, 5, 6, 8, 8, 8, 8};
+	int key = 7;
+	int *result = binarySearch(&key, hole, sizeof hole/sizeof *hole,
+	                           sizeof *hole, compFunc);
+	ck_assert_ptr_null(result);
+
+#test bfindNotInArrayAfter
+	int notInArray = 200;
+	int *key = &notInArray;
+	int *result = binarySearch(key, array, sizeof array/sizeof *array,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_null(result);
+
+#test bfindNotInArrayBefore
+	int notInArray = -100;
+	int *key = &notInArray;
+	int *result = binarySearch(key, array, sizeof array/sizeof *array,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_null(result);
+
+#suite lsearch
+
+#tcase lsearch
+
+#test lfindElement
+	int *key = array + 10;
+	int *result = linearSearch(key, array, sizeof array/sizeof *array,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_nonnull(result);
+	ck_assert_int_eq(*key, *result);
+
+#test lfindAll
+	for(int i=-16; i<16; i++)
+	{
+		int *key = &i;
+		int *result = linearSearch(key, array, sizeof array/sizeof *array,
+		                           sizeof *array, compFunc);
+		ck_assert_ptr_nonnull(result);
+		ck_assert_int_eq(*key, *result);
+	}
+
+#test lfindOffsetArray
+	int *key = array + 23;
+	int *result = linearSearch(key, array + 20, 10,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_nonnull(result);
+	ck_assert_int_eq(*key, *result);
+
+#test lfindUnitaryArray
+	int *key = array;
+	int *result = linearSearch(key, array, 1,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_nonnull(result);
+	ck_assert_int_eq(*key, *result);
+
+#test lfindHole
+	int hole[] = {1, 2, 2, 2, 3, 4, 4, 5, 6, 8, 8, 8, 8};
+	int key = 7;
+	int *result = linearSearch(&key, hole, sizeof hole/sizeof *hole,
+	                           sizeof *hole, compFunc);
+	ck_assert_ptr_null(result);
+
+#test lfindNotInArrayAfter
+	int notInArray = 80;
+	int *key = &notInArray;
+	int *result = linearSearch(key, array, sizeof array/sizeof *array,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_null(result);
+
+#test lfindNotInArrayBefore
+	int notInArray = -100;
+	int *key = &notInArray;
+	int *result = linearSearch(key, array, sizeof array/sizeof *array,
+	                           sizeof *array, compFunc);
+	ck_assert_ptr_null(result);

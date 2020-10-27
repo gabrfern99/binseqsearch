@@ -8,7 +8,7 @@ $ git clone git://expert.chickenkiller.com/ed2.git
 This is a task on search algorithms
 
 ## Compiling and running
-$ make
+$ make run
 
 ## License
 GPL3+
